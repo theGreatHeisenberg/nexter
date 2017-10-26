@@ -1,2 +1,2 @@
 # nexter
-Nexter : Personalized book recommendations based on Twitter data
+Nexter : Personalized book recommendations based on Twitter data.
