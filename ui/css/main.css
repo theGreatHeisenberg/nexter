@@ -1,0 +1,29 @@
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+.book-title{
+    color: #333333;
+    font-family: "Merriweather", Georgia, serif;
+    font-weight: bold;
+    font-size: medium;
+    margin-top: 10px;
+}
+.book-container {
+    margin: 10px;
+}
+.author-title{
+    color: #333333;
+    font-family: "Merriweather", Georgia, serif;
+    font-size: small;
+    margin-top: 10px;
+}
+
+.book-image{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.preview-link{
+    font-size: x-small;
+}
