@@ -21,6 +21,7 @@ class UserBookMapping(db.Model):
     confidence_score = db.Column('confidence_score', db.Float)
     map_user_id = db.Column('user_id', db.Integer)
     map_book_id = db.Column('book_id', db.Integer)
+    feedback = db.Column('user_feedback',db.Integer)
 
 class Books(db.Model):
     __tablename__ = 'books'
@@ -58,6 +59,30 @@ def data(handle):
         recommendation['confidence_score'] = mapping.confidence_score
         list_of_recommendation.append(recommendation)
     data['recommendations'] = list_of_recommendation
+    return jsonify(data)
+
+@app.route("/feedback",methods = ['POST'])
+def feedback():
+    data = request.json
+    handle = data['twitter_handle']
+    book_id = data['book_id']
+    #feedback = data['feedback']
+    if data['feedback'] == True:
+        feedback = 1
+    else:
+        feedback = 0
+
+    user = Users.query.filter_by(twitter_handle = handle).first()
+    row = db.session.query(UserBookMapping) \
+          .filter(UserBookMapping.map_user_id == user.user_id, UserBookMapping.map_book_id == book_id)
+
+    entry = [x for x in row]
+    print entry[0]
+    print entry[0].map_user_id, entry[0].feedback
+    entry[0].feedback = feedback
+    print entry[0].map_user_id, entry[0].feedback
+    db.session.commit()
+
     return jsonify(data)
 
 if __name__ == "__main__":
