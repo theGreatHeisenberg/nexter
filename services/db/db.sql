@@ -13,17 +13,26 @@ INSERT INTO users (twitter_handle, is_deleted) VALUES('@pankajtekwani12', false)
 INSERT INTO users (twitter_handle, is_deleted) VALUES('@kapiltekwani', false);
 INSERT INTO users (twitter_handle, is_deleted) VALUES('@shreyas', false);
 
+
 CREATE TABLE books (
-	book_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	book_id INT NOT NULL,
 	goodreads_book_id INT,
-	isbn CHAR(13),
-	author VARCHAR(256),
+	isbn CHAR(13) DEFAULT NULL,
+	author VARCHAR(250) DEFAULT NULL,
+	original_publication_year YEAR DEFAULT 0,
 	title VARCHAR(500),
-	ratings DOUBLE,
+	ratings DOUBLE DEFAULT 0.0,
+	ratings_count INT DEFAULT 0,
+	image_url TEXT DEFAULT NULL,
 	source ENUM('GOODREADS'),
-	rating_count INT,
-	image_url TEXT,
-	original_publication_year YEAR(4)
+	PRIMARY KEY (book_id)
+);
+
+CREATE TABLE tags (
+	tag_id INT NOT NULL,
+	tag VARCHAR(250),
+	uber_label VARCHAR(250) DEFAULT NULL,
+	PRIMARY KEY (tag_id)
 );
 
 INSERT INTO books (author, title, ratings, rating_count) VALUES('Andrew S Tanenbaum','Distributed Systems', 1.5, 19);
@@ -42,3 +51,10 @@ INSERT INTO user_book_mapping (user_id, book_id, user_feedback) VALUES(1,1,true)
 INSERT INTO user_book_mapping (user_id, book_id, user_feedback) VALUES(2,1,false);
 INSERT INTO user_book_mapping (user_id, book_id, user_feedback) VALUES(1,2,true);
 INSERT INTO user_book_mapping (user_id, book_id, user_feedback) VALUES(2,2,false);
+
+CREATE TABLE tags (
+	tag_id INT NOT NULL,
+	tag VARCHAR(250),
+	uber_label VARCHAR(250) DEFAULT NULL,
+	PRIMARY KEY (tag_id)
+);
