@@ -2,11 +2,11 @@ from flask import Flask,jsonify
 from sqlalchemy import *
 
 app = Flask(__name__)
-from db_helper import DbHelper
 
 
 @app.route("/data/<handle>")
 def data(handle):
+    from db_helper import DbHelper
     dbObj = DbHelper()
     data = dbObj.getRecommendation(handle)
     return jsonify(data)
@@ -14,6 +14,7 @@ def data(handle):
 
 @app.route("/feedback", methods=['POST'])
 def feedback():
+    from db_helper import DbHelper
     try:
         data = request.json
         dbObj = DbHelper()

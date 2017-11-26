@@ -13,6 +13,15 @@ INSERT INTO users (twitter_handle, is_deleted) VALUES('@pankajtekwani12', false)
 INSERT INTO users (twitter_handle, is_deleted) VALUES('@kapiltekwani', false);
 INSERT INTO users (twitter_handle, is_deleted) VALUES('@shreyas', false);
 
+CREATE TABLE tweets (
+	tweet_id INT NOT NULL AUTO_INCREMENT,
+	tweet_text VARCHAR(256),
+	label VARCHAR(256) DEFAULT NULL,
+	user_id INT(11) DEFAULT NULL,
+	tweet_timestamp DATETIME,
+	PRIMARY KEY (tweet_id)
+);
+
 
 CREATE TABLE books (
 	book_id INT NOT NULL,
