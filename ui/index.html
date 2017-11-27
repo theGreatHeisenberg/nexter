@@ -57,6 +57,7 @@
           </button>
             <h4 class="card-title nav-title">Nexter</h4>
         </div>
+
       </div>
     </nav>
 
@@ -65,10 +66,23 @@
       <div class="container">
         <h1>What Should I Read Next?</h1>
         <p>Based on your Twitter data we collected following book recommendations</p>
+          <form class="navbar-form navbar-left">
+              <div class="form-group">
+                  <input id="handle_input" type="text" class="form-control" placeholder="Enter your twitter handle">
+              </div>
+              <button id="search" type="submit" class="btn btn-success">
+                  <!--<span class="glyphicon glyphicon-search"></span>-->
+                  Get My Recommendations
+              </button>
+          </form>
       </div>
+        <div class="alert alert-danger hidden" id="error_user">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> Your twitter account doesn't exist or you don't have sufficient amount of tweets.
+        </div>
     </div>
 
-    <div class="container">
+    <div id="main_container" class="container hidden">
       <!-- Example row of columns -->
         <div class="row">
           <h4>Top book recommendations based on your Tweets</h4>
@@ -83,8 +97,15 @@
         </div>
         <div class="row">
             <h4>Books you might like based on your feedback</h4>
-            <!--<div class="row single-item">-->
+            <div id="loader-related" class="card col-sm-12 book-container hidden" style="text-align: center">
+                <img src="loader/lg.discuss-ellipsis-preloader.gif"/>
             </div>
+            <div id="emptyview-related" class="card col-sm-4 book-container hidden">
+                <h4 class="card-title book-title"><a href="#" class="card-title book-title">Recommendations not generated yet..</a></h4>
+            </div>
+            <div class="row single-item-related">
+            </div>
+
         </div>
       <hr>
 
