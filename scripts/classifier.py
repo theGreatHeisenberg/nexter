@@ -10,15 +10,16 @@ from sklearn.svm import SVC
 import text_processor
 
 def classify_tweets(tweets):
+    # data = pandas.read_csv(open("/home/shreyas/Downloads/datasets.tsv"), sep="\t")
     data = pandas.read_csv(open("/home/shreyas/datasets.tsv"), sep="\t")
     target = data["Label"]
-    count_vect = CountVectorizer(stop_words="english", ngram_range=(1,2))
-    count_vect = CountVectorizer(stop_words="english", ngram_range=(1, 2))
+    # count_vect = CountVectorizer(stop_words="english", ngram_range=(1,2))
+    count_vect = CountVectorizer(stop_words="english")
     X_train_counts = count_vect.fit_transform(data.Tweet)
     tf_transformer = TfidfTransformer(use_idf=False).fit(X_train_counts)
     X_train_tf = tf_transformer.transform(X_train_counts)
     X_train_tf.shape
-    clf = SGDClassifier(loss='log', penalty='l2',alpha=1e-3, random_state=42,max_iter=5, tol=None).fit(X_train_tf, target)
+    clf = SGDClassifier(loss='log', penalty='l2',alpha=1e-2, random_state=42,max_iter=3, tol=None).fit(X_train_tf, target)
     # clf = MultinomialNB(alpha=1.0, class_prior=None, fit_prior=True).fit(X_train_tf, target)
     # clf = SVC(probability=True).fit(X_train_tf, target)
     docs_modified = [text_processor.get_clean_tweet(tweet) for tweet,id in tweets]

@@ -16,6 +16,14 @@ def init():
     auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
     return tweepy.API(auth)
 
+def check_if_user_exists(handle):
+    try:
+        twitter_accessor = init()
+        twitter_accessor.user_timeline(handle)
+        return True
+    except:
+        return False
+
 def fetch_tweets_after_time(handle, since):
     twitter_accesser = init()
     # twitter_accesser.get_user(handle)
@@ -35,3 +43,4 @@ def fetch_tweets_after_time(handle, since):
     return tweets
 
 # fetch_tweets_after_time("achillesHeelV2", "2016-06-01")
+# print check_if_tweets_presents("achillesHeelV2xx")

@@ -9,6 +9,13 @@
     font-size: medium;
     margin-top: 10px;
 }
+.nav-title{
+    color: #ffffff;
+    font-family: "Merriweather", Georgia, serif;
+    font-weight: bold;
+    font-size: medium;
+    margin-top: 10px;
+}
 .book-container {
     margin: 10px;
 }
@@ -26,4 +33,8 @@
 
 .preview-link{
     font-size: x-small;
+}
+
+.hidden {
+    display: none !important;
 }
