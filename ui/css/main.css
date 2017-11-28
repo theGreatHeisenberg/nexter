@@ -8,6 +8,7 @@
     font-weight: bold;
     font-size: 0.9vw;
     margin-top: 10px;
+    text-overflow: ellipsis;
 }
 .nav-title{
     color: #ffffff;
@@ -24,6 +25,7 @@
     font-family: "Merriweather", Georgia, serif;
     font-size: small;
     margin-top: 10px;
+    text-overflow: ellipsis;
 }
 
 .book-image{

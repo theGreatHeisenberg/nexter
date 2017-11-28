@@ -3,6 +3,7 @@ from sqlalchemy import *
 from db_retrieve_service import app
 import dateutil
 import datetime
+import random
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost/nexter'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -98,8 +99,9 @@ class Books(db.Model):
 
 class DbHelper():
     def get_user_id_from_handle(self, handle):
-        query = db.session.query(Users.user_id).filter(Users.twitter_handle == handle)
-        return [user_id for user_id in query][0][0]
+        query = db.session.query(Users.user_id).filter(Users.twitter_handle == handle).first()
+        print query
+        return query[0]
 
     def get_last_tweet_timestamp(self, handle):
         user_id = self.get_user_id_from_handle(handle)
@@ -180,8 +182,7 @@ class DbHelper():
     def interested_books(self, uid):
         query = db.session.query(UserInterests) \
             .filter(UserInterests.user_id == uid) \
-            .order_by(UserInterests.affinity_score.desc()) \
-            .limit(2)
+            .order_by(UserInterests.affinity_score.desc())
         labels = [x for x in query]
         # print labels[0].label,labels[1].label
 
@@ -207,7 +208,7 @@ class DbHelper():
             query = db.session.query(Books) \
                 .filter(Books.book_id.in_(list(book_ids_to_show))) \
                 .order_by(Books.agg_ratings.desc()) \
-                .limit(5)
+                .limit(100)
             for book in query:
                 one_book = {}
                 if book.book_id not in booktag_obj:
@@ -220,7 +221,8 @@ class DbHelper():
         for x in booklist_obj:
             print x'''
         # print booktag_obj #[4373, 3554, 9569, 3491]
-        return booktag_obj
+        random.shuffle(booktag_obj)
+        return booktag_obj[:10]
 
     def insert_all_tweets(self, tweets):
         for tweet in tweets:

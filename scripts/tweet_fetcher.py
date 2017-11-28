@@ -34,9 +34,13 @@ def fetch_tweets_after_time(handle, since):
         if tweet.created_at > startDate:
             tweets.append(tweet)
 
+    tweets_bk = []
     while (tmpTweets[-1].created_at > startDate):
         print("Last Tweet @", tmpTweets[-1].created_at, " - fetching some more")
         tmpTweets = twitter_accesser.user_timeline(handle, max_id=tmpTweets[-1].id)
+        if tmpTweets == tweets_bk:
+            break
+        tweets_bk = tmpTweets
         for tweet in tmpTweets:
             if tweet.created_at > startDate:
                 tweets.append(tweet)

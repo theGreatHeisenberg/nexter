@@ -52,7 +52,7 @@ $(document).ready(function(){
 });
 function render_books(handle) {
     $.ajax({
-        url: "http://192.168.56.101:8000/nexterApi/recommendations/" + handle,
+        url: "/nexterApi/recommendations/" + handle,
         type: 'GET',
         success: function(res) {
             console.log(res);
@@ -83,7 +83,7 @@ function render_books(handle) {
 }
 function render_related_books(handle) {
     $.ajax({
-        url: "http://192.168.56.101:8000/nexterApi/relatedBooks/" + handle,
+        url: "/nexterApi/relatedBooks/" + handle,
         type: 'GET',
         success: function(res) {
             console.log(res);
@@ -146,7 +146,7 @@ function load_book(isbn) {
 
 function post_feedback(book_id, callback) {
     $.ajax({
-        url: "http://192.168.56.101:8000/nexterApi/feedback",
+        url: "/nexterApi/feedback",
         type: 'POST',
         contentType:"application/json",
         data:JSON.stringify({"twitter_handle": handle_global, "book_id": book_id, "feedback":true}),
@@ -161,7 +161,7 @@ function post_feedback(book_id, callback) {
 function register_user(handle, callback) {
     handle_global = handle;
     $.ajax({
-        url: "http://192.168.56.101:8000/nexterApi/user/" + handle,
+        url: "/nexterApi/user/" + handle,
         type: 'GET',
         success: function(res) {
             console.log(res);
