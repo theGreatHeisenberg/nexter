@@ -10,8 +10,8 @@ from sklearn.svm import SVC
 import text_processor
 
 def classify_tweets(tweets):
-    # data = pandas.read_csv(open("/home/shreyas/Downloads/datasets.tsv"), sep="\t")
-    data = pandas.read_csv(open("/home/shreyas/datasets.tsv"), sep="\t")
+    data = pandas.read_csv(open("/home/shreyas/Downloads/datasets.tsv"), sep="\t")
+    # data = pandas.read_csv(open("/home/shreyas/datasets.tsv"), sep="\t")
     target = data["Label"]
     # count_vect = CountVectorizer(stop_words="english", ngram_range=(1,2))
     count_vect = CountVectorizer(stop_words="english")
